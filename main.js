@@ -1,14 +1,33 @@
-console.log('Hello')
 document.addEventListener('DOMContentLoaded', ()=>{
-    fetchCurrencies()
+    fetchCrimes()
 })
 
-function fetchCurrencies(){
-    fetch('https://v6.exchangerate-api.com/v6/ddbfb6e33f56f0d2f8830407/latest/USD')
+function fetchCrimes(){
+    fetch('https://data.cityofnewyork.us/resource/bqiq-cu78.json')
+    //fetch('https://data.cityofnewyork.us/resource/bqiq-cu78.json?bias_motive_description=ANTI-FEMALE LESBIAN (GAY)')
     .then(resp => resp.json())
-    .then(json => console.log(json))
+    //.then(json => json.forEach(getCrime))
+    .then(data => {getCrime(data)})
 }
 
-function getCurrencies(currency){
-//console.log(currency)
-}
+function getCrime (bias){
+   console.log(bias)
+   // Filter out unique biasMotivation
+        let biasMotivation = [...new Set(bias.map(x => x.bias_motive_description))];
+        //console.log(biasMotivation)
+    // put the unique items on a list and append them to a div
+        let div = document.createElement('div');
+        div.className = 'vectims';
+        biasMotivation.forEach((vectim)=>{
+        let li = document.createElement('li');
+        li.textContent = vectim;
+        div.append(li)
+    // add an event listener to each li    
+        li.addEventListener('click', (e)=>{
+                //console.log(e)
+            })
+         })
+    // append the div to the main div with the id Motive-Description
+        document.querySelector('#Motive-Description').append(div);
+        
+  }
