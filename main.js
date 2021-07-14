@@ -11,23 +11,22 @@ function fetchCrimes(){
 }
 
 function getCrime (bias){
-   console.log(bias)
+  // console.log(bias)
    // Filter out unique biasMotivation
         let biasMotivation = [...new Set(bias.map(x => x.bias_motive_description))];
         //console.log(biasMotivation)
-    // put the unique items on a list and append them to a div
-        let div = document.createElement('div');
-        div.className = 'vectims';
+    // put the unique items on a drop down list and append them to a div
+        let select = document.createElement('select')
+        select.name = 'drop-down';
+        select.id = 'drop-down';
         biasMotivation.forEach((vectim)=>{
-        let li = document.createElement('li');
-        li.textContent = vectim;
-        div.append(li)
-    // add an event listener to each li    
-        li.addEventListener('click', (e)=>{
-                //console.log(e)
-            })
+        let option = document.createElement('option');
+        option.value = 'val'
+        option.textContent = vectim;
+        select.append(option)
+
          })
     // append the div to the main div with the id Motive-Description
-        document.querySelector('#Motive-Description').append(div);
+        document.querySelector('#Motive-Description').append(select);
         
   }
