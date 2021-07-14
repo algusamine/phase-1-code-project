@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     fetchCrimes()
-    //biasMotivationEvent()
+    displayResults()
 })
 
 function fetchCrimes(){
@@ -10,9 +10,9 @@ function fetchCrimes(){
         getCrime(data)
     });
 }
-
+let search;
 function getCrime (bias){
-  console.log(bias)
+  //console.log(bias)
 
 // Filter out unique biasMotivation******
 
@@ -110,13 +110,13 @@ function getCrime (bias){
         selectYear.id = 'drop-down3';
         //add event listener to selectYear:
         selectYear.addEventListener('change', (e)=>{
-            //console.log(e)
+           // console.log(e.target)
             let crimeYear = bias.filter(function(crimeStat3){
                 if(e.target.value === crimeStat3.complaint_year_number){
                     return true 
                 }
             })
-            console.log(crimeYear)
+           console.log(crimeYear)
             })
         year.forEach((victimYear)=>{
         let optionYear = document.createElement('option');
@@ -128,17 +128,43 @@ function getCrime (bias){
         // append the div to the main div with the id year
         document.querySelector('#year').append(selectYear);
     
-//submit button*****
-         
-        let button = document.createElement('button');
-        button.id = 'search';
-        button.textContent = 'Search'
-        document.querySelector('#search').append(button);
-        // add eventListener to search button: 
-        button.addEventListener('click', (e)=>{
-            console.log(e.target)
+//Search button*****
+         search = document.createElement('button');
+         search.type = 'button';
+         search.className = 'search';
+         search.textContent = 'Search';
+         document.querySelector('#search').append(search);
 
-        })
+         search.addEventListener('click', (e)=>{
+             //console.log(e);
+             let finalResult = bias.filter(function (crime){
+                
+                let keepResult = true;
+                keepResult = (crime.complaint_year_number === selectYear.value) && keepResult;
+                keepResult = (crime.county === selectCounty.value) && keepResult;
+                keepResult = (crime.law_code_category_description === selectFelony.value) && keepResult;
+                keepResult = (crime.bias_motive_description === select.value) && keepResult;
+
+                return keepResult;
+             })
+             console.log(finalResult) 
+             displayResults(finalResult)
+         })
+
+}
 
 
+//Display results*************
+function displayResults(adam){
+    console.log(adam)
+    let ul = document.createElement('ul');
+    //adam.forEach((finalVictim) => {
+       ul.textContent = adam.length;
+    //     let li = document.createElement('li');
+    //     li.textContent = 'finalVictim';
+    //     ul.append(li);
+     document.querySelector('#results').innerHTML = '';
+     document.querySelector('#results').append(ul)
+     
+    // })
 }
