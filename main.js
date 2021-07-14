@@ -12,7 +12,7 @@ function fetchCrimes(){
 }
 
 function getCrime (bias){
-   console.log(bias)
+  console.log(bias)
 
 // Filter out unique biasMotivation******
 
@@ -23,14 +23,21 @@ function getCrime (bias){
         select.name = 'drop-down';
         select.id = 'drop-down';
         //add event listener to select:
-        select.addEventListener('click', (e)=>{
-            console.log(e)
+        select.addEventListener('change', (e)=>{
+            //console.log(e.target.value)
+            let crimeBias = bias.filter (function(crimeStat){
+                if(e.target.value === crimeStat.bias_motive_description){
+                    return true 
+                }
             })
-        biasMotivation.forEach((vectim)=>{
-        let option = document.createElement('option');
-        option.value = 'val'
-        option.textContent = vectim;
-        select.append(option)
+            console.log(crimeBias)
+         })
+        biasMotivation.forEach((victim)=>{
+            let option = document.createElement('option');
+            option.name = victim;
+            option.value = victim;
+            option.textContent = victim;
+            select.append(option)
 
          })
         // append the div to the main div with the id Motive-Description
@@ -43,16 +50,22 @@ function getCrime (bias){
         //console.log(county)
         // put the county on a drop down list and append them to a div county
         let selectCounty = document.createElement('select')
-        selectCounty.name = 'drop-down3';
-        selectCounty.id = 'drop-down3';
+        selectCounty.name = 'drop-down1';
+        selectCounty.id = 'drop-down1';
         //add event listener to selectCounty:
-        selectCounty.addEventListener('click', (e)=>{
-            console.log(e)
+        selectCounty.addEventListener('change', (e)=>{
+            //console.log(e.target)
+            let crimeCounty = bias.filter (function(crimeStat1){
+                if(e.target.value === crimeStat1.county){
+                    return true 
+                }
             })
-        county.forEach((vectimCounty)=>{
+            console.log(crimeCounty )
+         })
+        county.forEach((victimCounty)=>{
         let optionCounty = document.createElement('option');
-        optionCounty.value = 'val'
-        optionCounty.textContent = vectimCounty;
+        optionCounty.value = victimCounty;
+        optionCounty.textContent = victimCounty;
         selectCounty.append(optionCounty)
 
          })
@@ -65,16 +78,22 @@ function getCrime (bias){
         //console.log(county)
         // put the county on a drop down list and append them to a div felony
         let selectFelony = document.createElement('select')
-        selectFelony.name = 'drop-down3';
-        selectFelony.id = 'drop-down3';
+        selectFelony.name = 'drop-down2';
+        selectFelony.id = 'drop-down2';
         //add event listener to selectFelony:
-        selectFelony.addEventListener('click', (e)=>{
-            console.log(e)
+        selectFelony.addEventListener('change', (e)=>{
+            //console.log(e)
+            let crimeFelony = bias.filter (function(crimeStat2){
+                if(e.target.value === crimeStat2.law_code_category_description){
+                    return true 
+                }
             })
-        felony.forEach((vectimFelony)=>{
+            console.log(crimeFelony)
+            })
+        felony.forEach((victimFelony)=>{
         let optionFelony = document.createElement('option');
-        optionFelony.value = 'val'
-        optionFelony.textContent = vectimFelony;
+        optionFelony.value = victimFelony;
+        optionFelony.textContent = victimFelony;
         selectFelony.append(optionFelony)
 
         })
@@ -87,16 +106,22 @@ function getCrime (bias){
         //console.log(year)
         // put the year on a drop down list and append them to a div year
         let selectYear = document.createElement('select')
-        selectYear.name = 'drop-down2';
-        selectYear.id = 'drop-down2';
+        selectYear.name = 'drop-down3';
+        selectYear.id = 'drop-down3';
         //add event listener to selectYear:
-        selectYear.addEventListener('click', (e)=>{
-            console.log(e)
+        selectYear.addEventListener('change', (e)=>{
+            //console.log(e)
+            let crimeYear = bias.filter(function(crimeStat3){
+                if(e.target.value === crimeStat3.complaint_year_number){
+                    return true 
+                }
             })
-        year.forEach((vectimYear)=>{
+            console.log(crimeYear)
+            })
+        year.forEach((victimYear)=>{
         let optionYear = document.createElement('option');
-        optionYear.value = 'val'
-        optionYear.textContent = vectimYear;
+        optionYear.value = victimYear;
+        optionYear.textContent = victimYear;
         selectYear.append(optionYear)
 
          })
@@ -111,9 +136,9 @@ function getCrime (bias){
         document.querySelector('#search').append(button);
         // add eventListener to search button: 
         button.addEventListener('click', (e)=>{
-            console.log(e)
-            })
+            console.log(e.target)
+
+        })
 
 
 }
-
