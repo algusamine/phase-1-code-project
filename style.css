@@ -1,3 +1,8 @@
 header {
     background-color: darkblue;
+    background-image: url('./photos/200203-nypd-crime-stats.jpeg');
+}
+#Motive-Description, #year, #county, #search, #felony{
+    display: inline;
+
 }
