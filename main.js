@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     fetchCrimes()
-    displayResults()
+    getDate()
 })
 
 function fetchCrimes(){
@@ -10,11 +10,11 @@ function fetchCrimes(){
         getCrime(data)
     });
 }
-let search;
-function getCrime (bias){
-  //console.log(bias)
 
-// Filter out unique biasMotivation******
+function getCrime (bias){
+  console.log(bias)
+
+// Filter out unique biasMotivation for the drop down list******
 
         let biasMotivation = [...new Set(bias.map(x => x.bias_motive_description))];
         //console.log(biasMotivation)
@@ -30,7 +30,7 @@ function getCrime (bias){
                     return true 
                 }
             })
-            console.log(crimeBias)
+            //console.log(crimeBias)
          })
         biasMotivation.forEach((victim)=>{
             let option = document.createElement('option');
@@ -60,7 +60,7 @@ function getCrime (bias){
                     return true 
                 }
             })
-            console.log(crimeCounty )
+            //console.log(crimeCounty )
          })
         county.forEach((victimCounty)=>{
         let optionCounty = document.createElement('option');
@@ -88,7 +88,7 @@ function getCrime (bias){
                     return true 
                 }
             })
-            console.log(crimeFelony)
+           // console.log(crimeFelony)
             })
         felony.forEach((victimFelony)=>{
         let optionFelony = document.createElement('option');
@@ -116,7 +116,7 @@ function getCrime (bias){
                     return true 
                 }
             })
-           console.log(crimeYear)
+           //console.log(crimeYear)
             })
         year.forEach((victimYear)=>{
         let optionYear = document.createElement('option');
@@ -129,7 +129,7 @@ function getCrime (bias){
         document.querySelector('#year').append(selectYear);
     
 //Search button*****
-         search = document.createElement('button');
+         let search = document.createElement('button');
          search.type = 'button';
          search.className = 'search';
          search.textContent = 'Search';
@@ -147,24 +147,36 @@ function getCrime (bias){
 
                 return keepResult;
              })
-             console.log(finalResult) 
+             //console.log(finalResult) 
              displayResults(finalResult)
          })
 
 }
 
-
 //Display results*************
-function displayResults(adam){
-    console.log(adam)
-    let ul = document.createElement('ul');
-    //adam.forEach((finalVictim) => {
-       ul.textContent = adam.length;
-    //     let li = document.createElement('li');
-    //     li.textContent = 'finalVictim';
-    //     ul.append(li);
-     document.querySelector('#results').innerHTML = '';
-     document.querySelector('#results').append(ul)
-     
-    // })
+
+function displayResults(finalCrimeResult){
+    console.log(finalCrimeResult)
+    let p = document.createElement('p');
+    p.textContent = finalCrimeResult.length;
+        if(p.textContent < 2){
+          p.textContent = `There was: ${finalCrimeResult.length} hate crime`
+        } else {
+          p.textContent = `There were: ${finalCrimeResult.length} hate crimes`
+        }
+    p.style.backgroundColor = 'red';
+    document.querySelector('#results').innerHTML = '';
+    document.querySelector('#results').append(p);
+}
+
+// Display date and time**********
+
+function getDate(){
+    let today = new Date();
+    let date = today.getFullYear() + '-' + (today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() +':'+ today.getMinutes() +':' + today.getSeconds();
+    let dateTime = date+' '+time;
+    let p = document.createElement('p');
+    p.textContent = dateTime;
+    document.querySelector('#date').append(p);
 }

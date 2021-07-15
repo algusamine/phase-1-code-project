@@ -1,8 +1,94 @@
-header {
-    background-color: darkblue;
-    background-image: url('./photos/200203-nypd-crime-stats.jpeg');
+header{
+background-color: navy;
+padding: 10px;
 }
-#Motive-Description, #year, #county, #search, #felony{
-    display: inline;
+
+#logo{
+    height: 80px;
+    width: 80px;
+}
+
+.header {
+    color: white;
+    text-align: center;
+    float: right;
+    padding-right: 200px;
+    padding-top: 8px;
+    font-family: Arial Narrow, sans-serif;
+    text-transform: uppercase;
 
 }
+
+#date {
+    font-family: Arial Narrow, sans-serif;
+    float: right;
+    color: white;
+    padding-right: 5px;
+    padding-top: 20px;
+}
+
+main {
+    background-image: url('./photos/200203-nypd-crime-stats.jpeg');
+    background-repeat: no-repeat;
+    background-size: 1500px 1000px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.mainh1 {
+    width: 100%;
+    text-align: center;
+    color: black;
+    background-color: rgb(245, 209, 7);
+    opacity: 0.8;
+    font-family: Arial Narrow, sans-serif;
+    font-weight:bolder;
+    font-size: 70px;
+    text-transform: uppercase;
+}
+
+h4 {
+    color: black;
+}
+#county {
+    display: inline;
+}
+#felony {
+    display: inline;
+}
+
+#year {
+    display: inline;
+}
+
+#search {
+    display: inline;
+}
+
+#results {
+    display: inline;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Arial Narrow, sans-serif;
+    font-weight: bolder;
+    font-size: 30px;
+}
+a {
+    color: red;
+}
+  footer p{
+    display: inline-block;
+    font-size: 16px;
+	font-weight: 100;
+    background-color: #010e80;
+    color: white;
+    padding: 10px;
+  }
+
+  footer {
+    width: 100%;
+    background-color: #010e80;
+	text-align: center;
+	padding: 30px 30px;
+  };
