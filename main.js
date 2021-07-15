@@ -159,10 +159,12 @@ function displayResults(finalCrimeResult){
     console.log(finalCrimeResult)
     let p = document.createElement('p');
     p.textContent = finalCrimeResult.length;
-        if(p.textContent < 2){
-          p.textContent = `There was: ${finalCrimeResult.length} hate crime`
-        } else {
-          p.textContent = `There were: ${finalCrimeResult.length} hate crimes`
+        if(p.textContent >= 2){
+          p.textContent = `There were  ${finalCrimeResult.length} hate crimes`
+        } else if(p.textContent == 1){
+          p.textContent = `There was ${finalCrimeResult.length} hate crime`
+        } else if (p.textContent < 1){
+            p.textContent = `There were no hate crimes for this selection`
         }
     p.style.backgroundColor = 'red';
     document.querySelector('#results').innerHTML = '';
