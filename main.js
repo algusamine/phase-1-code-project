@@ -18,12 +18,9 @@ function getCrime (bias){
 
         let biasMotivation = [...new Set(bias.map(x => x.bias_motive_description))];
         //console.log(biasMotivation)
-         // put the unique items on a drop down list and append them to a div
-        let select = document.createElement('select')
-        select.name = 'drop-down';
-        select.id = 'drop-down';
+       
         //add event listener to select:
-        select.addEventListener('change', (e)=>{
+        document.querySelector('#drop-down').addEventListener('change', (e)=>{
             //console.log(e.target.value)
             let crimeBias = bias.filter (function(crimeStat){
                 if(e.target.value === crimeStat.bias_motive_description){
@@ -37,23 +34,18 @@ function getCrime (bias){
             option.name = victim;
             option.value = victim;
             option.textContent = victim;
-            select.append(option)
+            document.querySelector('#drop-down').append(option)
 
          })
-        // append the div to the main div with the id Motive-Description
-        document.querySelector('#Motive-Description').append(select);
         
 
 // filter by county**********
 
         let county = [...new Set(bias.map(x => x.county))];
         //console.log(county)
-        // put the county on a drop down list and append them to a div county
-        let selectCounty = document.createElement('select')
-        selectCounty.name = 'drop-down1';
-        selectCounty.id = 'drop-down1';
+        
         //add event listener to selectCounty:
-        selectCounty.addEventListener('change', (e)=>{
+        document.querySelector('#drop-down1').addEventListener('change', (e)=>{
             //console.log(e.target)
             let crimeCounty = bias.filter (function(crimeStat1){
                 if(e.target.value === crimeStat1.county){
@@ -66,22 +58,17 @@ function getCrime (bias){
         let optionCounty = document.createElement('option');
         optionCounty.value = victimCounty;
         optionCounty.textContent = victimCounty;
-        selectCounty.append(optionCounty)
+        document.querySelector('#drop-down1').append(optionCounty)
 
          })
-        // append the div to the main div with the id county
-        document.querySelector('#county').append(selectCounty);
 
 // filter by law code category descriptoin****
 
         let felony = [...new Set(bias.map(x => x.law_code_category_description))];
         //console.log(county)
-        // put the county on a drop down list and append them to a div felony
-        let selectFelony = document.createElement('select')
-        selectFelony.name = 'drop-down2';
-        selectFelony.id = 'drop-down2';
+       
         //add event listener to selectFelony:
-        selectFelony.addEventListener('change', (e)=>{
+        document.querySelector('#drop-down2').addEventListener('change', (e)=>{
             //console.log(e)
             let crimeFelony = bias.filter (function(crimeStat2){
                 if(e.target.value === crimeStat2.law_code_category_description){
@@ -94,22 +81,17 @@ function getCrime (bias){
         let optionFelony = document.createElement('option');
         optionFelony.value = victimFelony;
         optionFelony.textContent = victimFelony;
-        selectFelony.append(optionFelony)
+        document.querySelector('#drop-down2').append(optionFelony)
 
         })
-        // append the div to the main div with the id felony
-        document.querySelector('#felony').append(selectFelony);
 
 // filter by year********
 
         let year = [...new Set(bias.map(x => x.complaint_year_number))];
         //console.log(year)
-        // put the year on a drop down list and append them to a div year
-        let selectYear = document.createElement('select')
-        selectYear.name = 'drop-down3';
-        selectYear.id = 'drop-down3';
+       
         //add event listener to selectYear:
-        selectYear.addEventListener('change', (e)=>{
+        document.querySelector('#drop-down3').addEventListener('change', (e)=>{
            // console.log(e.target)
             let crimeYear = bias.filter(function(crimeStat3){
                 if(e.target.value === crimeStat3.complaint_year_number){
@@ -122,11 +104,9 @@ function getCrime (bias){
         let optionYear = document.createElement('option');
         optionYear.value = victimYear;
         optionYear.textContent = victimYear;
-        selectYear.append(optionYear)
+        document.querySelector('#drop-down3').append(optionYear)
 
          })
-        // append the div to the main div with the id year
-        document.querySelector('#year').append(selectYear);
     
 //Search button*****
          let search = document.createElement('button');
@@ -140,11 +120,11 @@ function getCrime (bias){
              let finalResult = bias.filter(function (crime){
                 
                 let keepResult = true;
-                keepResult = (crime.complaint_year_number === selectYear.value) && keepResult;
-                keepResult = (crime.county === selectCounty.value) && keepResult;
-                keepResult = (crime.law_code_category_description === selectFelony.value) && keepResult;
-                keepResult = (crime.bias_motive_description === select.value) && keepResult;
-
+                keepResult = (crime.bias_motive_description ===  document.querySelector('#drop-down').value) && keepResult;
+                keepResult = (crime.county === document.querySelector('#drop-down1').value) && keepResult;
+                keepResult = (crime.law_code_category_description === document.querySelector('#drop-down2').value) && keepResult;
+                keepResult = (crime.complaint_year_number === document.querySelector('#drop-down3').value) && keepResult;
+            
                 return keepResult;
              })
              //console.log(finalResult) 
