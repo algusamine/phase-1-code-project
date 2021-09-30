@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     fetchCrimes()
-    getDate()
 })
 
 function fetchCrimes(){
@@ -11,7 +10,7 @@ function fetchCrimes(){
     });
 }
 
-function getCrime (bias){
+function getCrime(bias){
   console.log(bias)
 
 // Filter out unique biasMotivation for the drop down list******
@@ -20,7 +19,7 @@ function getCrime (bias){
         //console.log(biasMotivation)
        
         //add event listener to select:
-        document.querySelector('#drop-down').addEventListener('change', (e)=>{
+        document.querySelector('#motive-dropdown').addEventListener('change', (e)=>{
             //console.log(e.target.value)
             let crimeBias = bias.filter (function(crimeStat){
                 if(e.target.value === crimeStat.bias_motive_description){
@@ -34,7 +33,7 @@ function getCrime (bias){
             option.name = victim;
             option.value = victim;
             option.textContent = victim;
-            document.querySelector('#drop-down').append(option)
+            document.querySelector('#motive-dropdown').append(option)
 
          })
         
@@ -45,7 +44,7 @@ function getCrime (bias){
         //console.log(county)
         
         //add event listener to selectCounty:
-        document.querySelector('#drop-down1').addEventListener('change', (e)=>{
+        document.querySelector('#county-dropdown').addEventListener('change', (e)=>{
             //console.log(e.target)
             let crimeCounty = bias.filter (function(crimeStat1){
                 if(e.target.value === crimeStat1.county){
@@ -58,30 +57,30 @@ function getCrime (bias){
         let optionCounty = document.createElement('option');
         optionCounty.value = victimCounty;
         optionCounty.textContent = victimCounty;
-        document.querySelector('#drop-down1').append(optionCounty)
+        document.querySelector('#county-dropdown').append(optionCounty)
 
          })
 
 // filter by law code category descriptoin****
 
-        let felony = [...new Set(bias.map(x => x.law_code_category_description))];
+        let assult = [...new Set(bias.map(x => x.law_code_category_description))];
         //console.log(county)
        
-        //add event listener to selectFelony:
-        document.querySelector('#drop-down2').addEventListener('change', (e)=>{
+        //add event listener to selectAssult:
+        document.querySelector('#assult-dropdown').addEventListener('change', (e)=>{
             //console.log(e)
-            let crimeFelony = bias.filter (function(crimeStat2){
+            let crimeAssult = bias.filter (function(crimeStat2){
                 if(e.target.value === crimeStat2.law_code_category_description){
                     return true 
                 }
             })
-           // console.log(crimeFelony)
+           // console.log(crimeAssult)
             })
-        felony.forEach((victimFelony)=>{
-        let optionFelony = document.createElement('option');
-        optionFelony.value = victimFelony;
-        optionFelony.textContent = victimFelony;
-        document.querySelector('#drop-down2').append(optionFelony)
+        assult.forEach((victimAssult)=>{
+        let optionAssult = document.createElement('option');
+        optionAssult.value = victimAssult;
+        optionAssult.textContent = victimAssult;
+        document.querySelector('#assult-dropdown').append(optionAssult)
 
         })
 
@@ -91,7 +90,7 @@ function getCrime (bias){
         //console.log(year)
        
         //add event listener to selectYear:
-        document.querySelector('#drop-down3').addEventListener('change', (e)=>{
+        document.querySelector('#year-dropdown').addEventListener('change', (e)=>{
            // console.log(e.target)
             let crimeYear = bias.filter(function(crimeStat3){
                 if(e.target.value === crimeStat3.complaint_year_number){
@@ -104,7 +103,7 @@ function getCrime (bias){
         let optionYear = document.createElement('option');
         optionYear.value = victimYear;
         optionYear.textContent = victimYear;
-        document.querySelector('#drop-down3').append(optionYear)
+        document.querySelector('#year-dropdown').append(optionYear)
 
          })
     
@@ -120,10 +119,10 @@ function getCrime (bias){
              let finalResult = bias.filter(function (crime){
                 
                 let keepResult = true;
-                keepResult = (crime.bias_motive_description ===  document.querySelector('#drop-down').value) && keepResult;
-                keepResult = (crime.county === document.querySelector('#drop-down1').value) && keepResult;
-                keepResult = (crime.law_code_category_description === document.querySelector('#drop-down2').value) && keepResult;
-                keepResult = (crime.complaint_year_number === document.querySelector('#drop-down3').value) && keepResult;
+                keepResult = (crime.bias_motive_description ===  document.querySelector('#motive-dropdown').value) && keepResult;
+                keepResult = (crime.county === document.querySelector('#county-dropdown').value) && keepResult;
+                keepResult = (crime.law_code_category_description === document.querySelector('#assult-dropdown').value) && keepResult;
+                keepResult = (crime.complaint_year_number === document.querySelector('#year-dropdown').value) && keepResult;
             
                 return keepResult;
              })
@@ -140,7 +139,7 @@ function displayResults(finalCrimeResult){
     let p = document.createElement('p');
     p.textContent = finalCrimeResult.length;
         if(p.textContent >= 2){
-          p.textContent = `There were  ${finalCrimeResult.length} hate crimes`
+          p.textContent = `There were ${finalCrimeResult.length} hate crimes`
         } else if(p.textContent == 1){
           p.textContent = `There was ${finalCrimeResult.length} hate crime`
         } else if (p.textContent < 1){
@@ -151,14 +150,3 @@ function displayResults(finalCrimeResult){
     document.querySelector('#results').append(p);
 }
 
-// Display date and time**********
-
-function getDate(){
-    let today = new Date();
-    let date = today.getFullYear() + '-' + (today.getMonth()+1)+'-'+today.getDate();
-    let time = today.getHours() +':'+ today.getMinutes() +':' + today.getSeconds();
-    let dateTime = date+' '+time;
-    let p = document.createElement('p');
-    p.textContent = dateTime;
-    document.querySelector('#date').append(p);
-}

@@ -93,27 +93,4 @@ a {
     background-color: #010e80;
 	text-align: center;
     padding-bottom: 50px;
-  };
-
-  @media only screen and (max-width: 480px) {
-	p img slect h1 h4 #Motive-Description #serach #county #felony #year #result #drop-down #drop-down1 #drop-down2 #drop-down3 {
-	  width: 270px;
-	}
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px), (orientation: portrait) {
-    p img slect h1 h4 #Motive-Description #serach #county #felony #year #result #drop-down #drop-down1 #drop-down2 #drop-down3  {
-	  width: 95%;
-	}
-  }
-  
-  @media only screen and (max-resolution: 150dpi) and (max-width: 480px) {
-    p img slect h1 h4 #Motive-Description #serach #county #felony #year #result #drop-down #drop-down1 #drop-down2 #drop-down3 {
-	  font-size: 20px;
-	}
-  }
-  @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
-    p img slect h1 h4 #Motive-Description #serach #county #felony #year #result #drop-down #drop-down1 #drop-down2 #drop-down3  {
-	float: left;
-	  width: 20em;
-  }
-}
